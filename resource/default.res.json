@@ -1,0 +1,30 @@
+{
+	"groups": [
+		{
+			"keys": "player_config_json,obstacle_factory_config_json,score_label_config_json,remark_config_json",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "configs/player_config.json",
+			"type": "json",
+			"name": "player_config_json"
+		},
+		{
+			"url": "configs/obstacle_factory_config.json",
+			"type": "json",
+			"name": "obstacle_factory_config_json"
+		},
+		{
+			"url": "configs/score_label_config.json",
+			"type": "json",
+			"name": "score_label_config_json"
+		},
+		{
+			"name": "remark_config_json",
+			"type": "json",
+			"url": "configs/remark_config.json"
+		}
+	]
+}

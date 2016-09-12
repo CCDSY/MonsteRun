@@ -1,0 +1,14 @@
+{
+    "baseSpawnDelay": 1100,
+    "spawnDelayRandomizationRange": 200,
+    "obstacleConfig": {
+        "size": {
+            "width": 80,
+            "height": 80
+        },
+        "activationOffset": 300,
+        "activationDuration": 160,
+        "activationDistance": 140,
+        "movementSpeed": 425
+    }
+}

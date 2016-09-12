@@ -1,0 +1,22 @@
+[
+    {
+        "threshold": 1,
+        "remark": "0 out of 1000. You suck."
+    },
+    {
+        "threshold": 5,
+        "remark": "Try tapping on the screen, not on your sloppy head."
+    },
+    {
+        "threshold": 10,
+        "remark": "How can you be this bad?"
+    },
+    {
+        "threshold": 15,
+        "remark": "Get good, will you?"
+    },
+    {
+        "threshold": 20,
+        "remark": "Those who rely solely on luck do not deserve respect."
+    }
+]
