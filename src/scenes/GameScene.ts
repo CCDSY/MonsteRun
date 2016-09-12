@@ -38,16 +38,17 @@ class GameScene extends egret.DisplayObjectContainer {
         bg.graphics.endFill();
         this.addChild(bg);
 
+        let playerConfig: PlayerConfig = RES.getRes("player_config_json");
+
         var ground = new egret.Shape();
-        ground.y = this.player.y + (this.player.height >> 1);
         ground.width = stageW;
-        ground.height = stageH - ground.y;
+        ground.height = playerConfig.initialPosition.offsetY - (playerConfig.size.height >> 1);
+        ground.y = stageH - ground.height;
         ground.graphics.beginFill(0x888888);
         ground.graphics.drawRect(0, 0, ground.width, ground.height);
         ground.graphics.endFill();
         this.addChild(ground);
 
-        let playerConfig: PlayerConfig = RES.getRes("player_config_json");
         this.player = new Player(playerConfig.jumpHeight, playerConfig.jumpTime, playerConfig.playerColor);
         this.player.width = playerConfig.size.width;
         this.player.height = playerConfig.size.height;
