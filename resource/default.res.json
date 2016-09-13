@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "player_config_json,obstacle_factory_config_json,score_label_config_json,remark_config_json",
+			"keys": "player_config_json,obstacle_factory_config_json,score_label_config_json,remark_config_json,background_png,block_png,player_png,monster_01_png,background_config_json",
 			"name": "preload"
 		}
 	],
@@ -25,6 +25,31 @@
 			"name": "remark_config_json",
 			"type": "json",
 			"url": "configs/remark_config.json"
+		},
+		{
+			"name": "background_png",
+			"type": "image",
+			"url": "assets/background.png"
+		},
+		{
+			"name": "block_png",
+			"type": "image",
+			"url": "assets/block.png"
+		},
+		{
+			"name": "player_png",
+			"type": "image",
+			"url": "assets/player.png"
+		},
+		{
+			"name": "monster_01_png",
+			"type": "image",
+			"url": "assets/monster_01.png"
+		},
+		{
+			"name": "background_config_json",
+			"type": "json",
+			"url": "configs/background_config.json"
 		}
 	]
 }

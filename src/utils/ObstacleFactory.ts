@@ -54,7 +54,7 @@ class ObstacleFactory {
     }
 
     private spawn(): void {
-        var obstacle = new Obstacle(this.obstacleConfig.activationDuration, this.playerInitialPosition[0] + this.obstacleConfig.activationOffset, this.obstacleConfig.activationDistance, this.chooseMovement(), this.obstacleConfig.movementSpeed, 0);
+        var obstacle = new Obstacle(this.obstacleConfig.activationDuration, this.playerInitialPosition[0] + this.obstacleConfig.activationOffset, this.obstacleConfig.activationDistance, this.chooseMovement(), this.obstacleConfig.movementSpeed);
         obstacle.width = this.obstacleConfig.size.width;
         obstacle.height = this.obstacleConfig.size.height;
         obstacle.x = this.container.stage.stageWidth + (obstacle.width >> 1);

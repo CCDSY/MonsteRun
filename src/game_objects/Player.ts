@@ -1,7 +1,7 @@
 /**
  * Player
  */
-class Player extends egret.Shape {
+class Player extends egret.Bitmap {
 
     private static instance: Player;
     public static getInstance(): Player {
@@ -13,27 +13,16 @@ class Player extends egret.Shape {
 
     private landed: boolean = true;
 
-    private color: number;
-
-    constructor(jumpHeight: number, jumpTime: number, color: number) {
+    constructor(jumpHeight: number, jumpTime: number) {
         super();
 
         this.jumpHeight = jumpHeight;
         this.jumpTime = jumpTime;
 
-        this.color = color;
-
-        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+        var sprite: egret.Texture = RES.getRes("player_png");
+        this.texture = sprite;
 
         Player.instance = this;
-    }
-
-    private onAddToStage(): void {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-
-        this.graphics.beginFill(this.color);
-        this.graphics.drawRect(0, 0, this.width, this.height);
-        this.graphics.endFill();
     }
 
     public jump(): void {

@@ -15,6 +15,8 @@ class GameScene extends egret.DisplayObjectContainer {
         GameScene.instance = this;
     }
 
+    private background: Background;
+
     private player: Player;
     private factory: ObstacleFactory;
 
@@ -30,26 +32,15 @@ class GameScene extends egret.DisplayObjectContainer {
         let stageW = this.stage.stageWidth;
         let stageH = this.stage.stageHeight;
 
-        var bg = new egret.Shape();
-        bg.width = stageW;
-        bg.height = stageH;
-        bg.graphics.beginFill(0xaaaaaa);
-        bg.graphics.drawRect(0, 0, stageW, stageH);
-        bg.graphics.endFill();
-        this.addChild(bg);
+        let bgConfig: BackgroundConfig = RES.getRes("background_config_json");
+        this.background = new Background(bgConfig.skyMovementSpeed, bgConfig.floorMovementSpeed, bgConfig.floorHeight);
+        this.background.width = stageW;
+        this.background.height = stageH;
+        this.addChild(this.background);
 
         let playerConfig: PlayerConfig = RES.getRes("player_config_json");
 
-        var ground = new egret.Shape();
-        ground.width = stageW;
-        ground.height = playerConfig.initialPosition.offsetY - (playerConfig.size.height >> 1);
-        ground.y = stageH - ground.height;
-        ground.graphics.beginFill(0x888888);
-        ground.graphics.drawRect(0, 0, ground.width, ground.height);
-        ground.graphics.endFill();
-        this.addChild(ground);
-
-        this.player = new Player(playerConfig.jumpHeight, playerConfig.jumpTime, playerConfig.playerColor);
+        this.player = new Player(playerConfig.jumpHeight, playerConfig.jumpTime);
         this.player.width = playerConfig.size.width;
         this.player.height = playerConfig.size.height;
         this.player.x = playerConfig.initialPosition.x;
@@ -68,8 +59,6 @@ class GameScene extends egret.DisplayObjectContainer {
         this.scoreLabel.y = scoreLabelConfig.topMargin;
         this.scoreLabel.size = scoreLabelConfig.fontSize;
         this.addChild(this.scoreLabel);
-
-        this.startGame();
     }
 
     public startGame(): void {
@@ -77,6 +66,8 @@ class GameScene extends egret.DisplayObjectContainer {
 
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.player.jump, this.player);
         this.touchEnabled = true;
+
+        this.background.startMoving();
 
         this.factory.startSpawning();
     }

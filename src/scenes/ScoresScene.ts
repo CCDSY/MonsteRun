@@ -50,7 +50,10 @@ class ScoresScene extends egret.DisplayObjectContainer {
     private retry(): void {
         var container = this.parent;
         container.removeChildren();
-        container.addChild(new GameScene());
+
+        let newGame = new GameScene();
+        container.addChild(newGame);
+        newGame.startGame();
     }
 
 }

@@ -6,6 +6,4 @@ interface PlayerConfig {
     jumpHeight: number;
     jumpTime: number;
 
-    playerColor: number;
-
 }

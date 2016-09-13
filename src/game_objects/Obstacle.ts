@@ -1,9 +1,7 @@
 /**
  * Obstacle
  */
-class Obstacle extends egret.Shape {
-
-    private color: number;
+class Obstacle extends egret.Bitmap {
 
     private activationDuration: number;
     private activationPosition: number;
@@ -16,7 +14,7 @@ class Obstacle extends egret.Shape {
 
     private player: Player = Player.getInstance();
 
-    constructor(activationDuration: number, activationPosition: number, activationDistance: number, activationMovement: Movement, movementSpeed: number, color: number) {
+    constructor(activationDuration: number, activationPosition: number, activationDistance: number, activationMovement: Movement, movementSpeed: number) {
         super();
 
         this.activationDuration = activationDuration;
@@ -26,20 +24,12 @@ class Obstacle extends egret.Shape {
 
         this.movementSpeed = movementSpeed;
 
-        this.color = color;
-
         this.game = GameScene.getInstance();
 
-        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+        var sprite = RES.getRes("monster_01_png");
+        this.texture = sprite;
+
         this.addEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
-    }
-
-    private onAddToStage(): void {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-
-        this.graphics.beginFill(this.color);
-        this.graphics.drawRect(0, 0, this.width, this.height);
-        this.graphics.endFill();
     }
 
     private scored: boolean = false;

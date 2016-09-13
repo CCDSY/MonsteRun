@@ -1,13 +1,12 @@
 {
     "size": {
-        "width": 80,
+        "width": 77.65,
         "height": 80
     },
     "initialPosition": {
         "x": 230,
-        "offsetY": 200
+        "offsetY": 253
     },
     "jumpHeight": 185,
-    "jumpTime": 390,
-    "playerColor": 16777215
+    "jumpTime": 390
 }
