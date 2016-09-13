@@ -22,6 +22,7 @@ class WelcomeScene extends egret.DisplayObjectContainer {
         var startButton = new egret.TextField();
         this.addChild(startButton);
         Utility.configureCenteredTextField(startButton, 48, "GO!", 100);
+        startButton.textColor = 0x23bb23;
 
         startButton.once(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
         startButton.touchEnabled = true;

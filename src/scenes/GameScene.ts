@@ -59,6 +59,7 @@ class GameScene extends egret.DisplayObjectContainer {
         this.scoreLabel.y = scoreLabelConfig.topMargin;
         this.scoreLabel.size = scoreLabelConfig.fontSize;
         this.addChild(this.scoreLabel);
+        this.scoreLabel.textColor = 0x000000;
     }
 
     public startGame(): void {

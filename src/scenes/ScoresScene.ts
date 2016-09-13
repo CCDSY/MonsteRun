@@ -22,6 +22,7 @@ class ScoresScene extends egret.DisplayObjectContainer {
         var scoreLabel = new egret.TextField();
         this.addChild(scoreLabel);
         Utility.configureCenteredTextField(scoreLabel, 108, String(this.scores), -100);
+        scoreLabel.textColor = 0xff0000;
 
         let remarkConfigs: RemarkConfig[] = RES.getRes("remark_config_json");
         let remark: string;
@@ -38,10 +39,12 @@ class ScoresScene extends egret.DisplayObjectContainer {
         var remarksLabel = new egret.TextField();
         this.addChild(remarksLabel);
         Utility.configureCenteredTextField(remarksLabel, 32, remark, 0);
+        remarksLabel.textColor = 0x000000;
 
         var retryButton = new egret.TextField();
         this.addChild(retryButton);
         Utility.configureCenteredTextField(retryButton, 64, "Try Again", 100);
+        retryButton.textColor = 0x23bb23;
 
         retryButton.once(egret.TouchEvent.TOUCH_TAP, this.retry, this);
         retryButton.touchEnabled = true;
