@@ -50,7 +50,7 @@ class GameScene extends egret.DisplayObjectContainer {
         this.addChild(this.player);
 
         let factoryConfig: ObstacleFactoryConfig = RES.getRes("obstacle_factory_config_json");
-        this.factory = new ObstacleFactory(factoryConfig.baseSpawnDelay, factoryConfig.spawnDelayRandomizationRange, factoryConfig.obstacleConfig, [this.player.x, this.player.y]);
+        this.factory = new ObstacleFactory(factoryConfig, [this.player.x, this.player.y]);
 
         let scoreLabelConfig: ScoreLabelConfig = RES.getRes("score_label_config_json");
         this.scoreTextPrefix = scoreLabelConfig.prefix;

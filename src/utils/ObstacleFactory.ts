@@ -6,6 +6,11 @@ class ObstacleFactory {
     private baseSpawnDelay: number;
     private spawnDelayRandomizationRange: number;
 
+    private movePossibility: number;
+    private movePossibilityIncrement: number;
+    private maxMovePossibility: number;
+    private safeCounter: number;
+
     private obstacleConfig: ObstacleConfig;
 
     private container: GameScene;
@@ -14,10 +19,16 @@ class ObstacleFactory {
 
     private obstacles: Obstacle[] = [];
 
-    constructor(baseSpawnDelay: number, spawnDelayRandomizationRange: number, obstacleConfig: ObstacleConfig, playerInitialPosition: [number, number]) {
-        this.baseSpawnDelay = baseSpawnDelay;
-        this.spawnDelayRandomizationRange = spawnDelayRandomizationRange;
-        this.obstacleConfig = obstacleConfig;
+    constructor(config: ObstacleFactoryConfig, playerInitialPosition: [number, number]) {
+        this.baseSpawnDelay = config.baseSpawnDelay;
+        this.spawnDelayRandomizationRange = config.spawnDelayRandomizationRange;
+
+        this.movePossibility = config.startingMovePossibility;
+        this.movePossibilityIncrement = config.stepMovePossibility;
+        this.maxMovePossibility = config.maxMovePossibility;
+        this.safeCounter = config.movePossibilityIncrementStartDelay;
+
+        this.obstacleConfig = config.obstacleConfig;
         this.playerInitialPosition = playerInitialPosition;
         this.container = GameScene.getInstance();
     }
@@ -65,6 +76,15 @@ class ObstacleFactory {
 
         this.obstacles.push(obstacle);
 
+        if (this.safeCounter == 0 && this.movePossibility < this.maxMovePossibility) {
+            this.movePossibility += this.movePossibilityIncrement;
+            if (this.movePossibility > this.maxMovePossibility) {
+                this.movePossibility = this.maxMovePossibility;
+            }
+        } else {
+            this.safeCounter--
+        }
+
         var self = this;
         let callback = function (gameEnded: boolean): void {
             if (!gameEnded) {
@@ -78,7 +98,10 @@ class ObstacleFactory {
     }
 
     private chooseMovement(): Movement {
-        return Math.floor(Math.random() * 4);
+        if (Math.random() < this.movePossibility) {
+            return Math.floor(Math.random() * 3);
+        }
+        return Movement.Still;
     }
 
 }

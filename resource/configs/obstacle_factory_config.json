@@ -1,14 +1,18 @@
 {
     "baseSpawnDelay": 1100,
     "spawnDelayRandomizationRange": 200,
+    "startingMovePossibility": 0.1,
+    "maxMovePossibility": 0.75,
+    "stepMovePossibility": 0.1,
+    "movePossibilityIncrementStartDelay": 3,
     "obstacleConfig": {
         "size": {
             "width": 70,
             "height": 82
         },
         "activationOffset": 300,
-        "activationDuration": 160,
-        "activationDistance": 140,
+        "activationDuration": 135,
+        "activationDistance": 100,
         "movementSpeed": 425
     }
 }

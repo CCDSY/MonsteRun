@@ -14,7 +14,11 @@ class Obstacle extends egret.Bitmap {
 
     private player: Player = Player.getInstance();
 
-    constructor(activationDuration: number, activationPosition: number, activationDistance: number, activationMovement: Movement, movementSpeed: number) {
+    constructor(activationDuration: number,
+                activationPosition: number,
+                activationDistance: number,
+                activationMovement: Movement,
+                movementSpeed: number) {
         super();
 
         this.activationDuration = activationDuration;
