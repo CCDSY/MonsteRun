@@ -65,7 +65,7 @@ class GameScene extends egret.DisplayObjectContainer {
     public startGame(): void {
         this.updateScoreText();
 
-        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.player.jump, this.player);
+        this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.player.jump, this.player);
         this.touchEnabled = true;
 
         this.background.startMoving();
@@ -74,7 +74,7 @@ class GameScene extends egret.DisplayObjectContainer {
     }
 
     public endGame(): void {
-        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.player.jump, this.player);
+        this.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.player.jump, this.player);
 
         this.factory.stopSpawning();
 
