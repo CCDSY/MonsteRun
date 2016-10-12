@@ -76,13 +76,13 @@ class ObstacleFactory {
 
         this.obstacles.push(obstacle);
 
-        if (this.safeCounter == 0 && this.movePossibility < this.maxMovePossibility) {
+        if (this.safeCounter > 0) {
+            this.safeCounter--;
+        } else if (this.movePossibility < this.maxMovePossibility) {
             this.movePossibility += this.movePossibilityIncrement;
             if (this.movePossibility > this.maxMovePossibility) {
                 this.movePossibility = this.maxMovePossibility;
             }
-        } else {
-            this.safeCounter--
         }
 
         var self = this;
