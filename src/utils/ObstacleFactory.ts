@@ -19,6 +19,8 @@ class ObstacleFactory {
 
     private obstacles: Obstacle[] = [];
 
+    private gameEnded: boolean = false;
+
     constructor(config: ObstacleFactoryConfig, playerInitialPosition: [number, number]) {
         this.baseSpawnDelay = config.baseSpawnDelay;
         this.spawnDelayRandomizationRange = config.spawnDelayRandomizationRange;
@@ -31,6 +33,9 @@ class ObstacleFactory {
         this.obstacleConfig = config.obstacleConfig;
         this.playerInitialPosition = playerInitialPosition;
         this.container = GameScene.getInstance();
+
+        var self = this;
+        GameScene.getInstance().once(GameLifeCycleEvent.GAME_ENDED, function () { self.gameEnded = true; }, this);
     }
 
     public getObstacles(): Obstacle[] {
@@ -86,13 +91,14 @@ class ObstacleFactory {
         }
 
         var self = this;
-        let callback = function (gameEnded: boolean): void {
-            if (!gameEnded) {
+        let callback = function (): void {
+            if (!self.gameEnded) {
+                console.log("Destroying obstacle.");
                 self.obstacles.shift();
                 obstacle.parent.removeChild(obstacle);
             }
         }
-        obstacle.addDestructionCallback(callback);
+        obstacle.addEventListener(GameObjectEvent.OBJECT_DESTROYED, callback, this);
 
         obstacle.startMoving();
     }

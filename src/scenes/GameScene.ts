@@ -76,12 +76,14 @@ class GameScene extends egret.DisplayObjectContainer {
     public endGame(): void {
         this.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.player.jump, this.player);
 
+        this.dispatchEvent(new GameLifeCycleEvent(GameLifeCycleEvent.GAME_ENDED));
+
         this.factory.stopSpawning();
 
         egret.Tween.removeAllTweens();
         var obstacles = this.factory.getObstacles()
         for (var i = 0; i < obstacles.length; i++) {
-            obstacles[i].destroy(true);
+            obstacles[i].destroy();
         }
 
         this.showScores();
