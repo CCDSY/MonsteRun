@@ -17,12 +17,12 @@ class Background extends egret.DisplayObjectContainer {
         this.floorMovementSpeed = floorMovementSpeed;
         this.floorHeight = floorHeight;
 
-        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+        this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+
+        GameScene.getInstance().once(GameLifeCycleEvent.GAME_STARTED, this.startMoving, this);
     }
 
     private onAddToStage(): void {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-
         let skyBitmap1 = Utility.createBitmapByName("background_png");
         let skyBitmap2 = Utility.createBitmapByName("background_png");
         this.sky = new Stack([skyBitmap1, skyBitmap2], -2);

@@ -66,10 +66,6 @@ class GameScene extends egret.DisplayObjectContainer {
         this.updateScoreText();
 
         this.dispatchEvent(new GameLifeCycleEvent(GameLifeCycleEvent.GAME_STARTED));
-
-        this.background.startMoving();
-
-        this.factory.startSpawning();
     }
 
     public endGame(): void {

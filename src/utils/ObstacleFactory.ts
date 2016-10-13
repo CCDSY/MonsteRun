@@ -35,7 +35,9 @@ class ObstacleFactory {
         this.container = GameScene.getInstance();
 
         var self = this;
-        GameScene.getInstance().once(GameLifeCycleEvent.GAME_ENDED, function () { self.gameEnded = true; }, this);
+        var game = GameScene.getInstance();
+        game.once(GameLifeCycleEvent.GAME_STARTED, this.startSpawning, this);
+        game.once(GameLifeCycleEvent.GAME_ENDED, function () { self.gameEnded = true; }, this);
     }
 
     public getObstacles(): Obstacle[] {
