@@ -65,8 +65,7 @@ class GameScene extends egret.DisplayObjectContainer {
     public startGame(): void {
         this.updateScoreText();
 
-        this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.player.jump, this.player);
-        this.touchEnabled = true;
+        this.dispatchEvent(new GameLifeCycleEvent(GameLifeCycleEvent.GAME_STARTED));
 
         this.background.startMoving();
 
