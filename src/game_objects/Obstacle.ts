@@ -15,10 +15,10 @@ class Obstacle extends egret.Bitmap {
     private player: Player = Player.getInstance();
 
     constructor(activationDuration: number,
-                activationPosition: number,
-                activationDistance: number,
-                activationMovement: Movement,
-                movementSpeed: number) {
+        activationPosition: number,
+        activationDistance: number,
+        activationMovement: Movement,
+        movementSpeed: number) {
         super();
 
         this.activationDuration = activationDuration;
@@ -34,6 +34,7 @@ class Obstacle extends egret.Bitmap {
         this.texture = sprite;
 
         this.addEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
+        GameScene.getInstance().once(GameLifeCycleEvent.GAME_ENDED, this.destroy, this);
     }
 
     private scored: boolean = false;
@@ -98,18 +99,10 @@ class Obstacle extends egret.Bitmap {
         egret.Tween.get(this).to(finalTarget, duration).call(this.destroy);
     }
 
-    private destructionCallbacks: ((gameEnded: boolean) => void)[] = [];
-
-    public addDestructionCallback(callback: (gameEnded: boolean) => void) {
-        this.destructionCallbacks.push(callback);
-    }
-
-    public destroy(gameEnded: boolean = false): void {
+    public destroy(): void {
         this.removeEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
 
-        for (var i = 0; i < this.destructionCallbacks.length; i++) {
-            this.destructionCallbacks[i](gameEnded);
-        }
+        this.dispatchEvent(new GameObjectEvent(GameObjectEvent.OBJECT_DESTROYED));
     }
 
 }

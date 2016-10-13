@@ -17,6 +17,8 @@ var game_file_list = [
 	"bin-debug/configs/PlayerConfig.js",
 	"bin-debug/configs/RemarkConfig.js",
 	"bin-debug/configs/ScoreLabelConfig.js",
+	"bin-debug/events/GameLifeCycleEvent.js",
+	"bin-debug/events/GameObjectEvent.js",
 	"bin-debug/game_objects/Background.js",
 	"bin-debug/game_objects/Obstacle.js",
 	"bin-debug/game_objects/Player.js",

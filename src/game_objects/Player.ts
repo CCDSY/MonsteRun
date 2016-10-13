@@ -23,6 +23,14 @@ class Player extends egret.Bitmap {
         this.texture = sprite;
 
         Player.instance = this;
+
+        GameScene.getInstance().once(GameLifeCycleEvent.GAME_STARTED, this.start, this);
+    }
+
+    private start() {
+        var game = GameScene.getInstance();
+        game.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.jump, this);
+        game.touchEnabled = true;
     }
 
     public jump(): void {
