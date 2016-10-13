@@ -19,7 +19,7 @@ class ObstacleFactory {
 
     private obstacles: Obstacle[] = [];
 
-    private gameEnded: boolean = false;
+    private ended: boolean = false;
 
     constructor(config: ObstacleFactoryConfig, playerInitialPosition: [number, number]) {
         this.baseSpawnDelay = config.baseSpawnDelay;
@@ -34,10 +34,9 @@ class ObstacleFactory {
         this.playerInitialPosition = playerInitialPosition;
         this.container = GameScene.getInstance();
 
-        var self = this;
         var game = GameScene.getInstance();
         game.once(GameLifeCycleEvent.GAME_STARTED, this.startSpawning, this);
-        game.once(GameLifeCycleEvent.GAME_ENDED, function () { self.gameEnded = true; }, this);
+        game.once(GameLifeCycleEvent.GAME_ENDED, this.stopSpawning, this);
     }
 
     public getObstacles(): Obstacle[] {
@@ -50,6 +49,7 @@ class ObstacleFactory {
         if (!this.timer) {
             this.timer = new egret.Timer(this.createSpawnDelay(), 1);
             this.timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.onTimerComplete, this);
+            this.ended = false;
         }
 
         this.timer.start();
@@ -57,6 +57,7 @@ class ObstacleFactory {
 
     public stopSpawning(): void {
         this.timer.stop();
+        this.ended = true;
     }
 
     private createSpawnDelay(): number {
@@ -94,7 +95,7 @@ class ObstacleFactory {
 
         var self = this;
         let callback = function (): void {
-            if (!self.gameEnded) {
+            if (!self.ended) {
                 console.log("Destroying obstacle.");
                 self.obstacles.shift();
                 obstacle.parent.removeChild(obstacle);

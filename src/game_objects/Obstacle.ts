@@ -34,6 +34,7 @@ class Obstacle extends egret.Bitmap {
         this.texture = sprite;
 
         this.addEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
+        GameScene.getInstance().once(GameLifeCycleEvent.GAME_ENDED, this.destroy, this);
     }
 
     private scored: boolean = false;
