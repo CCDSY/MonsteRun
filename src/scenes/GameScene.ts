@@ -69,8 +69,6 @@ class GameScene extends egret.DisplayObjectContainer {
     }
 
     public endGame(): void {
-        this.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.player.jump, this.player);
-
         this.dispatchEvent(new GameLifeCycleEvent(GameLifeCycleEvent.GAME_ENDED));
 
         egret.Tween.removeAllTweens();

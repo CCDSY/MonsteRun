@@ -96,7 +96,6 @@ class ObstacleFactory {
         var self = this;
         let callback = function (): void {
             if (!self.ended) {
-                console.log("Destroying obstacle.");
                 self.obstacles.shift();
                 obstacle.parent.removeChild(obstacle);
             }

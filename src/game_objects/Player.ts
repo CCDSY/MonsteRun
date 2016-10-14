@@ -56,7 +56,10 @@ class Player extends egret.Bitmap {
     }
 
     public die(): void {
-        GameScene.getInstance().endGame();
+        let game = GameScene.getInstance();
+        game.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.jump, this);
+
+        game.endGame();
 
         this.playerDeathAnimation();
     }
